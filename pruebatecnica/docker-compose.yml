@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:17
+    container_name: prueba_tecnica_db
+    environment:
+      POSTGRES_USER: MiguelLiberCar
+      POSTGRES_PASSWORD: lvlconsulting123
+      POSTGRES_DB: prueba_backend_db
+    ports:
+      - "5432:5432"
