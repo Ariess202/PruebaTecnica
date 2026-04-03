@@ -1,9 +1,6 @@
 package com.balabarca.pruebatecnica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -15,7 +12,7 @@ public class Proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String nombre;
     private String descripcion;
@@ -27,4 +24,8 @@ public class Proyecto {
     private LocalDate fecha_fin;
 
     private boolean compartir;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario creador;
 }
