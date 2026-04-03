@@ -1,5 +1,5 @@
 services:
-  db:
+  mi-base-datos:
     image: postgres:17
     container_name: prueba_tecnica_db
     environment:
