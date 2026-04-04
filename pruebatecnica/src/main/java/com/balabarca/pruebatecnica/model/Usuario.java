@@ -24,6 +24,7 @@ public class Usuario {
     @Column(unique = true)
     private String email;
     private String password;
+    private String foto_url;
 
     @OneToMany(mappedBy = "creador", cascade = CascadeType.ALL)
     @JsonManagedReference

@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8080/api/proyectos/search?codigo=ATA-1&estado=PLANIFICACIÓN&fecha_inicio=2026-04-03
+  url: http://localhost:8080/api/proyectos/search?codigo=ATA-1&estado=PLANIFICACIÓN&fecha_fin=2026-05-03
   params:
     - name: codigo
       value: ATA-1
@@ -13,8 +13,8 @@ http:
     - name: estado
       value: PLANIFICACIÓN
       type: query
-    - name: fecha_inicio
-      value: 2026-04-03
+    - name: fecha_fin
+      value: 2026-05-03
       type: query
   auth: inherit
 

@@ -1,0 +1,26 @@
+info:
+  name: Actualizar Usuario
+  type: http
+  seq: 8
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/usuarios/1
+  body:
+    type: json
+    data: |-
+      {
+          "nombres": "Miguel Ángel",
+          "apellidos": "Liberato Carmín",
+          "nombreEmpresa": "LVL Consulting SAC",
+          "cargo": "Senior CEO",
+          "telefono": "+51 999888777",
+          "foto_url": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

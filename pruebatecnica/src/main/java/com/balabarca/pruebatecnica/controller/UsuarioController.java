@@ -26,6 +26,20 @@ public class UsuarioController {
         return usuarioRepository.save(usuario);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarUsuario(@PathVariable long id, @RequestBody Usuario usuario){
+        return usuarioRepository.findById(id).
+                map(usuarioExistente ->{
+                    usuarioExistente.setNombres(usuario.getNombres());
+                    usuarioExistente.setApellidos(usuario.getApellidos());
+                    usuarioExistente.setCargo(usuario.getCargo());
+                    usuarioExistente.setTelefono(usuario.getTelefono());
+                    usuarioExistente.setFoto_url(usuario.getFoto_url());
+                    Usuario usuarioActualizar = usuarioRepository.save(usuarioExistente);
+                    return ResponseEntity.ok(usuarioActualizar);
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/{id}")
     public Usuario buscarUsuarioPorId(@PathVariable long id){
         return usuarioRepository.findById(id).orElse(null);
