@@ -3,6 +3,7 @@ package com.balabarca.pruebatecnica.controller;
 import com.balabarca.pruebatecnica.dto.LoginRequest;
 import com.balabarca.pruebatecnica.model.Usuario;
 import com.balabarca.pruebatecnica.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +21,7 @@ public class UsuarioController {
     private BCryptPasswordEncoder encoder;
 
     @PostMapping("/registro")
-    public Usuario registrarUsuario(@RequestBody Usuario usuario){
+    public Usuario registrarUsuario(@Valid @RequestBody Usuario usuario){
         String pass = encoder.encode(usuario.getPassword());
         usuario.setPassword(pass);
         return usuarioRepository.save(usuario);
@@ -32,6 +33,7 @@ public class UsuarioController {
                 map(usuarioExistente ->{
                     usuarioExistente.setNombres(usuario.getNombres());
                     usuarioExistente.setApellidos(usuario.getApellidos());
+                    usuarioExistente.setNombreEmpresa(usuario.getNombreEmpresa());
                     usuarioExistente.setCargo(usuario.getCargo());
                     usuarioExistente.setTelefono(usuario.getTelefono());
                     usuarioExistente.setFoto_url(usuario.getFoto_url());
@@ -46,7 +48,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginData) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginData) {
         return usuarioRepository.findByEmail(loginData.email())
                 .map(usuario -> {
                     if (encoder.matches(loginData.password(), usuario.getPassword())) {

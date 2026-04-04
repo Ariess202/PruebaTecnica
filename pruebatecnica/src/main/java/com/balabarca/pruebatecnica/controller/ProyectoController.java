@@ -2,6 +2,7 @@ package com.balabarca.pruebatecnica.controller;
 
 import com.balabarca.pruebatecnica.model.Proyecto;
 import com.balabarca.pruebatecnica.repository.ProyectoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class ProyectoController {
     }
 
     @PostMapping
-    public Proyecto crearProyecto(@RequestBody Proyecto proyecto){
+    public Proyecto crearProyecto(@Valid @RequestBody Proyecto proyecto){
         return proyectoRepository.save(proyecto);
     }
 }
