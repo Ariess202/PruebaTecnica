@@ -14,12 +14,14 @@ Se ha desarrollado una API REST con el propósito de dar soporte a una aplicaci�
 * **Maven**: Gestión de ciclo de vida y dependencias.
 
 ## 📊 Modelo de Base de Datos
-El sistema gestiona una relación de uno a muchos (1:N), donde un usuario puede ser creador de múltiples proyectos.
+El sistema se basa en un modelo relacional normalizado en Tercera Forma Normal (3FN):
 
-* **Usuario**: Entidad principal que gestiona el acceso y perfil del sistema.
-* **Proyecto**: Entidad que contiene la lógica de negocio de los tableros, vinculada mediante `usuario_id`.
+* **Usuario**: Gestión de perfiles y credenciales seguras.
+* **Proyecto**: Entidad central de negocio vinculada a un creador.
+* **EstadoProyecto**: Tabla maestra para estandarizar los estados (PLANIFICACIÓN, EN CURSO, etc.).
+* **CategoriaProyecto**: Tabla maestra para la clasificación de tableros (Desarrollo, Diseño, etc.).
 
-![Modelo ER](pruebatecnica/docs/Modelo_ER.png)
+![Modelo ER](pruebatecnica/database/Modelo_ER.png)
 
 
 ## 🛣️ Guía de Endpoints
@@ -44,12 +46,24 @@ El sistema gestiona una relación de uno a muchos (1:N), donde un usuario puede 
 git clone https://github.com/Ariess202/PruebaTecnica.git
 ```
 
-**2.Configurar la base de datos:** Asegúrate de tener PostgreSQL corriendo y crea una base de datos.
+**2.Base de Datos:** 
+Crea una base de datos en PostgreSQL y restaura el dump incluido para tener los datos de prueba y tablas maestras:
 
-**3.Propiedades:** Configura el archivo ``src/main/resources/application.properties``.
+```bash
+psql -U tu_usuario -d tu_db -f database/backup_db.sql
+```
+
+**3.Propiedades:** Configura tus credenciales en ``src/main/resources/application.properties``.
 
 **4.Ejecución**
 ```bash
 ./mvnw spring-boot:run
 ```
+
+## ✨ Puntos Destacados
+
+* **Seguridad & Privacidad**: Hashing de contraseñas con **BCrypt** y uso de `JsonProperty.Access.WRITE_ONLY` para evitar la exposición de credenciales en las respuestas JSON.
+* **Validación Robusta**: Implementación de **Bean Validation** (`@NotBlank`, `@NotNull`) y restricciones a nivel de base de datos (`nullable = false`) para asegurar la calidad de los datos.
+* **Búsqueda Avanzada Dinámica**: Motor de búsqueda en JPA/JPQL que soporta filtros combinados opcionales (código, nombre, estado, categoría y fechas) con manejo de valores nulos.
+* **Arquitectura Escalable**: Uso de tablas maestras para estados y categorías, facilitando el mantenimiento y la consistencia visual en el frontend.
     
