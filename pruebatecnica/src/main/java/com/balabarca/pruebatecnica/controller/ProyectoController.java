@@ -22,6 +22,18 @@ public class ProyectoController {
         return proyectoRepository.findAll();
     }
 
+    @GetMapping("/usuario/{usuarioId}")
+    public List<Proyecto> listarProyectosPorUsuario(@PathVariable long usuarioId) {
+        return proyectoRepository.findByCreadorId(usuarioId);
+    }
+
+    @GetMapping("/home-search")
+    public List<Proyecto> buscarProyectos(
+            @RequestParam long usuarioId,
+            @RequestParam String nombre) {
+        return proyectoRepository.findByCreadorIdAndNombreContainingIgnoreCase(usuarioId, nombre);
+    }
+
     @GetMapping("/search")
     public List<Proyecto> buscarAvanzado(
             @RequestParam(required = false) String codigo,

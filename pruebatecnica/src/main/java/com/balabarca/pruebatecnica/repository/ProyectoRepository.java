@@ -27,4 +27,8 @@ public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
             @Param("fecha_inicio") LocalDate fecha_inicio,
             @Param("fecha_fin") LocalDate fecha_fin
     );
+
+    List<Proyecto> findByCreadorId(long usuarioId);
+
+    List<Proyecto> findByCreadorIdAndNombreContainingIgnoreCase(long usuarioId, String nombre);
 }
