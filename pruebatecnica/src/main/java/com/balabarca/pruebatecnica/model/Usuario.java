@@ -1,6 +1,7 @@
 package com.balabarca.pruebatecnica.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,5 +26,6 @@ public class Usuario {
     private String password;
 
     @OneToMany(mappedBy = "creador", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Proyecto> proyectos;
 }

@@ -1,0 +1,27 @@
+info:
+  name: Crear Usuario
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8080/api/usuarios/registro
+  body:
+    type: json
+    data: |-
+      {
+        "nombres": "Miguel Ángel",
+        "apellidos": "Liberato Carmín",
+        "nombreEmpresa": "LVL Consulting",
+        "cargo": "CEO LVL Consulting",
+        "telefono": "+51 987654321",
+        "email": "miguelliberato@gmail.com",
+        "password": "lvlconsulting123"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

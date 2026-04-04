@@ -1,7 +1,7 @@
 info:
-  name: Crear Proyecto
+  name: Crear Proyecto con Usuario
   type: http
-  seq: 1
+  seq: 5
 
 http:
   method: POST
@@ -10,14 +10,17 @@ http:
     type: json
     data: |-
       {
-        "nombre": "Evento de aniversario",
-        "descripcion": "Planificación del evento anual de la empresa",
-        "codigo": "ATA-2",
+        "nombre": "Proyecto de app",
+        "descripcion": "Planificación del desarrollo de una app para almacén de productos",
+        "codigo": "ATA-1",
         "icono_url": "https://cdn-icons-png.flaticon.com/512/1162/1162463.png",
         "estado": "PLANIFICACIÓN",
         "fecha_inicio": "2026-04-03",
         "fecha_fin": "2026-05-03",
-        "compartir": true
+        "compartir": true,
+        "creador": {
+          "id": 1
+        }
       }
   auth: inherit
 

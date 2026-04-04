@@ -1,5 +1,6 @@
 package com.balabarca.pruebatecnica.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Proyecto {
     private String nombre;
     private String descripcion;
     private String codigo;
+    private String categoria;
     private String icono_url;
     private String estado;
 
@@ -27,5 +29,6 @@ public class Proyecto {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonBackReference
     private Usuario creador;
 }
