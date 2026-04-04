@@ -23,6 +23,16 @@ El sistema se basa en un modelo relacional normalizado en Tercera Forma Normal (
 
 ![Modelo ER](pruebatecnica/database/Modelo_ER.png)
 
+La estructura fue diseñada bajo cuatro pilares fundamentales de ingeniería de software:
+
+* **Normalización y Consistencia:** Se migraron los atributos de "Estado" y "Categoría" de simples cadenas de texto (String) a Tablas Maestras (estado_proyecto, categoria_proyecto). Esto permite que el sistema solo procese estados válidos y definidos, evitando errores de duplicidad o inconsistencia en los filtros de búsqueda.
+
+* **Integridad Referencial:** Se implementaron Llaves Foráneas (FK) con restricciones NOT NULL. Esto asegura que no existan proyectos "huérfanos"; cada tablero debe pertenecer obligatoriamente a un usuario creador, a un estado y a una categoría.
+
+* **Escalabilidad:** El uso de tablas maestras permite que el sistema crezca sin modificar el código fuente. Si se requiere crear una nueva categoría (ej. "Diseño UX"), basta con realizar un INSERT en la base de datos, y el backend la reconocerá automáticamente para el filtrado.
+
+* **Seguridad y Auditoría:** La relación 1:N entre Usuario y Proyecto permite implementar un control de acceso granular. En los endpoints de búsqueda y listado, se filtra estrictamente por el usuario_id, asegurando que cada uno solo acceda y gestione sus propios tableros.
+
 
 ## 🛣️ Guía de Endpoints
 
