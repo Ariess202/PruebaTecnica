@@ -6,6 +6,13 @@ info:
 http:
   method: POST
   url: http://localhost:8080/api/usuarios/login
+  body:
+    type: json
+    data: |-
+      {
+        "email": "miguelliberato@gmail.com",
+        "password": "lvlconsulting123"
+      }
   auth: inherit
 
 settings:

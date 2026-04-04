@@ -13,6 +13,7 @@ http:
         "nombre": "Proyecto de app",
         "descripcion": "Planificación del desarrollo de una app para almacén de productos",
         "codigo": "ATA-1",
+        "categoria": "Software",
         "icono_url": "https://cdn-icons-png.flaticon.com/512/1162/1162463.png",
         "estado": "PLANIFICACIÓN",
         "fecha_inicio": "2026-04-03",
