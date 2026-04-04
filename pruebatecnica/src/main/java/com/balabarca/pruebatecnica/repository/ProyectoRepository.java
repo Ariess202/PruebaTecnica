@@ -15,8 +15,8 @@ public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
     @Query("SELECT p FROM Proyecto p WHERE " +
             "(:codigo IS NULL OR p.codigo LIKE %:codigo%) AND " +
             "(:nombre IS NULL OR p.nombre LIKE %:nombre%) AND " +
-            "(:estado IS NULL OR p.estado LIKE %:estado%) AND " +
-            "(:categoria IS NULL OR p.categoria LIKE %:categoria%) AND " +
+            "(:estado IS NULL OR p.estado.nombre LIKE %:estado%) AND " +
+            "(:categoria IS NULL OR p.categoria.nombre LIKE %:categoria%) AND " +
             "(CAST(:fecha_inicio AS localdate) IS NULL OR p.fecha_inicio >= :fecha_inicio) AND " +
             "(CAST(:fecha_fin AS localdate) IS NULL OR p.fecha_fin <= :fecha_fin)")
     List<Proyecto> busquedaAvanzada(
@@ -29,6 +29,5 @@ public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
     );
 
     List<Proyecto> findByCreadorId(long usuarioId);
-
     List<Proyecto> findByCreadorIdAndNombreContainingIgnoreCase(long usuarioId, String nombre);
 }

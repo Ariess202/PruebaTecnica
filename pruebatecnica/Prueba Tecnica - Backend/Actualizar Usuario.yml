@@ -1,7 +1,7 @@
 info:
   name: Actualizar Usuario
   type: http
-  seq: 8
+  seq: 7
 
 http:
   method: PUT

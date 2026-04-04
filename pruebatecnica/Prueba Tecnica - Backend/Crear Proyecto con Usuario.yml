@@ -1,7 +1,7 @@
 info:
   name: Crear Proyecto con Usuario
   type: http
-  seq: 5
+  seq: 4
 
 http:
   method: POST
@@ -12,16 +12,14 @@ http:
       {
         "nombre": "Proyecto de app",
         "descripcion": "Planificación del desarrollo de una app para almacén de productos",
-        "codigo": "ATA-1",
-        "categoria": "Software",
+        "codigo": "PA-2",
+        "categoria": {"id": 1},
         "icono_url": "https://cdn-icons-png.flaticon.com/512/1162/1162463.png",
-        "estado": "PLANIFICACIÓN",
+        "estado": {"id": 1},
         "fecha_inicio": "2026-04-03",
         "fecha_fin": "2026-05-03",
         "compartir": true,
-        "creador": {
-          "id": 1
-        }
+        "creador": {"id": 1}
       }
   auth: inherit
 

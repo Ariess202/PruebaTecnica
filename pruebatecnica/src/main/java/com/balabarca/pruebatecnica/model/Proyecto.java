@@ -24,9 +24,9 @@ public class Proyecto {
     @Column(nullable = false)
     private String codigo;
 
-    @NotBlank
-    @Column(nullable = false)
-    private String estado;
+    @ManyToOne
+    @JoinColumn(name = "estado_id", nullable = false)
+    private Estado_Proyecto estado;
 
     @NotNull
     @Column(nullable = false)
@@ -37,7 +37,11 @@ public class Proyecto {
     private LocalDate fecha_fin;
 
     private String descripcion;
-    private String categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria_Proyecto categoria;
+
     private String icono_url;
     private boolean compartir;
 
